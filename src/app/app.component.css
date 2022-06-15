@@ -19,6 +19,12 @@
     background-color: blueviolet;
 }
 
-#users .item.React="Yes"{
-background-color:red;
+.details{
+    background-color: brown;
+}
+.selected{
+    background-color: brown;
+}
+.button{
+    color: blue;
 }

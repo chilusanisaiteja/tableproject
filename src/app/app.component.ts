@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SiceService } from './sice.service';
@@ -9,59 +10,22 @@ import { SiceService } from './sice.service';
 })
 export class AppComponent implements OnInit{
   title = 'tableproject';
-  headers=['Name','Age','Dob','React(Yes/No)','intrests'];
-  data=[
-    {
-     "Name":'raju',
-     "Age":'49',
-     "Dob":'20/05/1973',
-     "React":'Yes',
-     "Intrests":'Sports'
-    },
-    {"Name":'ravi',
-    "Age":'30',
-    "Dob":'5/03/1991',
-    "React":'no',
-    "Intrests":'books'
-    },
-    {"Name":'sameer',
-    "Age":'15',
-    "Dob":'13/12/2008',
-   " React":'Yes',
-    "Intrests": 'Problem solving'
-    },
-    {
-    "Name":'seetha',
-    "Age":'24',
-    "Dob":'22/07/1998',
-    "React":'no',
-    "Intrests":'gaming'
-    },
-    {"Name":'ram',
-    "Age":'25',
-     "Dob":'3/07/1997',
-     "React": 'Yes',
-     "Intrests":'Programming'
-    },
-    {"Name":'mahesh',
-    "Age":'50',
-    "Dob":'9/09/1973',
-    "React":'no',
-     "Intrests": 'making videos'
-    }];
+  headers=['Name','Dob','React(Yes/No)','intrests'];
+  
+public data:any;
 
-    constructor(private service : SiceService){
+    constructor(private httpClient: HttpClient){
 
     }
     ngOnInit(){
       this.getDataFromAPI();
     }
+    isApproved=false;
 
     getDataFromAPI(){
-      this.service.getData().subscribe((response)=>{
-        console.log("Response from API is ", response)
-      },(error)=>{
-        console.log('Error is ', error);
-      })
+      this.httpClient.get<any>('http://localhost:3500/get').subscribe(response=>{
+        console.log("Response from API is ", response);
+        this.data=response;
+      });
     }
 }

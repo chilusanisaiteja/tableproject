@@ -4,14 +4,12 @@
   <table id="users">
     <tr>
       <th>Name</th>
-      <th>Age</th>
       <th>Dob</th>
       <th>React(Yes/no)</th>
       <th>Intrests</th>
     </tr>
-    <tr *ngFor="let item of data">
+    <tr *ngFor="let item of data" [class.selected]="item.React==='Yes'">
       <td>{{item.Name}}</td>
-      <td>{{item.Age}}</td>
       <td>{{item.Dob}}</td>
       <td>{{item.React}}</td>
       <td>{{item.Intrests}}</td>
